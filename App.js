@@ -8,8 +8,8 @@
 
 import React, { Component } from 'react';
 import todo from './src/screens/todo'
-//import { Provider } from 'react-redux'
-//import { store ,persistor} from './src/_redux/store'
+import { Provider } from 'react-redux'
+import { store} from './src/_redux/store'
 import { createAppContainer, createSwitchNavigator, NavigationActions } from 'react-navigation'
 
 const switchContainer = createSwitchNavigator({
@@ -21,9 +21,9 @@ const AppContainer = createAppContainer(switchContainer)
 export default class App extends Component {
   render() {
     return (
-      //<Provider store={store}>
+      <Provider store={store}>
         <AppContainer/>
-      //</Provider>
+      </Provider>
     )
   }
 };

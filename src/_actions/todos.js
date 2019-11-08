@@ -1,8 +1,5 @@
 import * as types from '../_redux/types'
 import axios from 'axios'
-import {ip,token} from '../services/ip'
-
-
 
 export const handleGetTodos= () => ({
   type: types.GET_TODOS,
@@ -11,10 +8,10 @@ export const handleGetTodos= () => ({
 
 export const handlePostTodos= (name) => ({
   type: types.POST_TODOS,
-  payload: axios.post(`${ip}/todos`,{name : name})
+  payload: axios.post(`https://todos-restful-api.herokuapp.com/api/todos`,{name : name})
 });
 
-export const handleDeleteTodos= (id,name) => ({
+export const handleDeleteTodos= (id) => ({
   type: types.DELETE_TODOS,
-  payload: axios.put(`${ip}/todos/${id}`,{name : name})
+  payload: axios.put(`https://todos-restful-api.herokuapp.com/api/todos/${id}`)
 });

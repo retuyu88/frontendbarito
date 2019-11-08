@@ -10,7 +10,6 @@ const initialState = {
 
 export default function reducerTodos(state = initialState, action) {
   switch (action.type) {
-  
     case `${types.GET_TODOS}_PENDING`:
     case `${types.POST_TODOS}_PENDING`:  
     case `${types.DELETE_TODOS}_PENDING`:  
@@ -38,7 +37,7 @@ export default function reducerTodos(state = initialState, action) {
         ...state,
         isLoading: false,
         isSuccess : true,
-        todos: state.rooms.concat(action.payload.data.data)
+        todos: state.todos.concat(action.payload.data.data)
       }
       
     case `${types.GET_TODOS}_REJECTED`:

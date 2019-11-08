@@ -1,13 +1,16 @@
-
 import React, { Component } from 'react';
 import { Text,View,StyleSheet,TextInput,CheckBox,TouchableOpacity } from 'react-native';
 import { Container} from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import {connect} from 'react-redux'
+import * as actionTodos from '../_actions/todos'
 
-export default class todo extends Component{
+
+class todo extends Component{
   constructor(props){
     super(props)
     this.state={
+      //ini backup kalau api tidak bisa 
       todos : ['Work','Swim','Study','Sleep','Run'],
       checked : {},
       marked : {},
@@ -15,6 +18,12 @@ export default class todo extends Component{
       status : 'add',
       change : 3
     }
+  }
+  componentDidMount(){
+     this.getThings()
+   }
+  getThings(){
+    this.props.getTodos()
   }
   onRemoveItem = i => {
     this.setState(state => {
@@ -40,11 +49,7 @@ export default class todo extends Component{
     this.setState({some_array:some_array})
   }
 
-    
-
-  
   render() {
-
     return (
       <Container >
       <View style= {styles.container}>
@@ -65,7 +70,7 @@ export default class todo extends Component{
           </TouchableOpacity>
         </View>
         <View>
-
+        
         {this.state.todos.map((todo,index)=>{
           return (
           <View style={styles.fixToText}>
@@ -79,7 +84,7 @@ export default class todo extends Component{
           <TouchableOpacity title="Delete" onPress={() => this.onRemoveItem(index)}
            ><Icon name='trash' size={20} color='red'></Icon>
            </TouchableOpacity>
-           <TouchableOpacity onPress={() => this.onUpdateItem(todo)}
+           <TouchableOpacity onPress={() => this.getThings()}
            ><Icon name='star' size={20} color='red'></Icon></TouchableOpacity>
           </View>
             )
@@ -91,6 +96,22 @@ export default class todo extends Component{
     )
   }
 };
+
+const mapStateToProps = state => {
+  return {
+   todos : state.todos
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return{
+    getTodos:() => dispatch(actionTodos.handleGetTodos())
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(todo)
 
 const styles = StyleSheet.create ({
     container: {

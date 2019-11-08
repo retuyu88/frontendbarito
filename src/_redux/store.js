@@ -1,17 +1,13 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-
-
-//import middleware from './middleware'
+import { createStore, compose, applyMiddleware } from 'redux';
+//import rootSaga from './sagas';
 import appReducer from '../_reducers/index'
-
-
-
-const persistedReducer = persistReducer(appReducer)
-
-
-const store = createStore(persistedReducer, {})
-const persistor = persistStore(store)
-
-
-
-export {store,persistor}
+/** Saga Middleware */
+//const sagaMiddleware = createSagaMiddleware();
+/** Create middlewares for redux */
+//let middlewares = applyMiddleware(sagaMiddleware);
+const store = createStore(appReducer,{}
+    //,compose
+    )
+/** run saga watchers */
+//sagaMiddleware.run(rootSaga);
+export {store}
