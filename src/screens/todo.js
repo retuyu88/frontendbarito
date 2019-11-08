@@ -70,12 +70,13 @@ class todo extends Component{
           </TouchableOpacity>
         </View>
         </View>
-      <View style= {styles.container}>
+      
         
         <View>
         
         {this.state.todos.map((todo,index)=>{
           return (
+            <View style= {styles.container}>
           <View style={styles.fixToText}>
             <CheckBox
               value = {this.state.checked[index]}
@@ -88,11 +89,12 @@ class todo extends Component{
            ><Icon name='trash' size={20} color='red'></Icon>
            </TouchableOpacity>
           </View>
+          </View>
             )
         }
         )}
          </View>
-      </View>
+   
       </View>
       </Container>
     )
@@ -118,6 +120,7 @@ export default connect(
 const styles = StyleSheet.create ({
     container: {
        padding: 10,
+       marginTop : 20,
        marginHorizontal : 10,
        borderTopLeftRadius : 20,
        borderBottomEndRadius: 20,
