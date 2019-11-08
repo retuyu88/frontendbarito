@@ -52,23 +52,26 @@ class todo extends Component{
   render() {
     return (
       <Container >
-      <View style= {styles.container}>
+        <View style={{backgroundColor : 'grey',height  : 700}}>
+          <View style={{backgroundColor : 'white'}}>
         <View style={styles.fixToText}>
           <TextInput style={{ width: 300, height: 40, borderColor: 'gray', borderWidth: 2 ,alignItems: 'stretch'}}
           placeholder="type new todo..."
           onChangeText={(value) => this.setState({string : value})}
           value={this.state.string}
           />
-          
           <TouchableOpacity title="Add" style={{width :30, height :20,color: 'red'}}
           onPress={(value) =>{if (this.state.status == 'add'){
             this.setState({todo : this.state.todos.push(this.state.string)})
           }else{
             this.state.todos[this.state.change] = this.state.string
           }this.setState({string : "",status: 'add'})}}
-          ><Icon name='check' size={30} type='FontAwesome'/>
+          ><Icon name='plus' size={30} type='FontAwesome'/>
           </TouchableOpacity>
         </View>
+        </View>
+      <View style= {styles.container}>
+        
         <View>
         
         {this.state.todos.map((todo,index)=>{
@@ -84,13 +87,12 @@ class todo extends Component{
           <TouchableOpacity title="Delete" onPress={() => this.onRemoveItem(index)}
            ><Icon name='trash' size={20} color='red'></Icon>
            </TouchableOpacity>
-           <TouchableOpacity onPress={() => this.getThings()}
-           ><Icon name='star' size={20} color='red'></Icon></TouchableOpacity>
           </View>
             )
         }
         )}
          </View>
+      </View>
       </View>
       </Container>
     )
@@ -116,24 +118,24 @@ export default connect(
 const styles = StyleSheet.create ({
     container: {
        padding: 10,
-       justifyContent : 'center',
+       marginHorizontal : 10,
        borderTopLeftRadius : 20,
        borderBottomEndRadius: 20,
-       height : 400,
-       marginTop: 100,
+       borderBottomLeftRadius: 20,
+       borderTopRightRadius : 20,
        backgroundColor : '#00bbd4'
     },
     text: {
        color: '#4f603c',
        borderBottomColor: 'black',
-       borderBottomWidth: 2,
        paddingBottom: 5,
        paddingTop:5,
-       width : 250
+       width : 250,
     },
     fixToText: {
       flexDirection: 'row',
-      alignContent: 'stretch',
+      justifyContent: 'center',
+      
       paddingHorizontal: 0
     },
     justText: {
